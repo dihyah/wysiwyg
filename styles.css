@@ -1,0 +1,236 @@
+body {
+    background-color:#f8efbd;
+    font-family: Arial,Verdana;
+}
+
+/* sidebar */
+.nav{
+    border-right:1px solid black;
+    height:100vh;
+    overflow: scroll;
+}
+
+.nav > a:hover{
+    background-color:#ffd107;
+    color:black;
+}
+
+.nav > a{
+    color:#85836d;
+    font-size:50px;
+    padding:10%;
+}
+
+/* content */
+.wysiwyg > [contenteditable=true],
+.wysiwyg > .contenteditable {
+    display: block;
+    font-size: 50px;
+    height: 84vh;
+    outline: none;
+    overflow: scroll; 
+    padding: 0.3rem 0.5rem;
+    word-wrap: break-word;
+}
+
+textarea:first-line{
+    font-size:42px;
+}
+
+.wysiwyg > textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 4.13rem;
+    margin: 0.3rem 0.5rem;
+    padding: 0;
+    border: none;
+    background: transparent none;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    transition: height 0.3s; 
+}
+
+.wysiwyg > [contenteditable=true] ~ textarea {
+    display: none !important;
+}
+
+.wysiwyg > [contenteditable=true]:empty:before,
+.wysiwyg > .contenteditable:empty:before {
+    content: '\200B';
+    /* Keep distance */
+    display: block;
+    opacity: .54;
+    white-space: nowrap;
+    cursor: text;
+    user-select: none;
+    pointer-events: none; 
+}
+
+.wysiwyg > [contenteditable=true][data-placeholder]:empty:before,
+.wysiwyg > .contenteditable[data-placeholder]:empty:before {
+    content: "​" attr(data-placeholder);
+}
+
+.wysiwyg > [contenteditable=true] img {
+    border:1px solid black;
+    max-width: 100% !important;
+    max-height: 50vh !important;
+    image-orientation: from-image;
+}
+
+/* pop ups */
+.wysiwyg-popup {
+    position: absolute;
+    z-index: 1;
+    color: black;
+    background: white;
+    background: rgba(255, 255, 255, 0.9);
+    left: -50%;
+    border: 1px solid #ddd;
+    border-radius: 0.2rem;
+    user-select: none; 
+}
+
+.wysiwyg-popup.animate-down {
+    transform-origin: top;
+    animation: transformer 0.2s ease-out 0s 1; 
+}
+
+.wysiwyg-popup.animate-up {
+    transform-origin: bottom;
+    animation: transformer 0.2s ease-out 0s 1; 
+}
+
+.wysiwyg-popup.hyperlink {
+    width: 25rem;
+    max-width: 90vw; 
+}
+
+.wysiwyg-popup.hyperlink > input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 0.3rem 0.5rem;
+    border: none;
+    background: transparent none;
+    box-shadow: none;
+    font-family: inherit; 
+}
+
+.wysiwyg-popup.palette td {
+    width: 0.5rem;
+    height: 0.5rem;
+    cursor: pointer;
+    user-select: none; 
+}
+
+.wysiwyg-popup .suggestion {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer; 
+}
+
+.wysiwyg-popup .suggestion:hover, .wysiwyg-popup .suggestion:first-of-type {
+    color: HighlightText;
+    background-color: Highlight; 
+}
+
+@keyframes transformer {
+    from {
+        opacity: 0;
+        transform: scale(0.5, 0); 
+    }
+    to {
+        opacity: 1;
+        transform: scale(1, 1); 
+    } 
+}
+
+/* toolbar */
+.wysiwyg .toolbar,
+.wysiwyg-popup .toolbar {
+    white-space: nowrap;
+}
+
+.wysiwyg .toolbar *,
+.wysiwyg-popup .toolbar * {
+    vertical-align: middle;
+}
+
+.wysiwyg > .toolbar-top {
+    border-bottom: 1px solid #ddd;
+}
+
+.wysiwyg > .toolbar-bottom {
+    border-top: 1px solid #ddd;
+}
+
+.wysiwyg > .toolbar-auto {
+    display: flex;
+    overflow: hidden;
+}
+
+.wysiwyg > .toolbar-auto:after {
+    content: '';
+    height: 1rem;
+    max-height: 0;
+    transition: height 0.2s, max-height 0s 0.2s;
+}
+
+.wysiwyg > .toolbar-auto > .toolbar {
+    width: 100%;
+    max-height: 1000000px;
+    margin-bottom: 0;
+    border-top: 1px solid #ddd;
+    transition: margin-bottom 0.2s cubic-bezier(0, 0, 0, 1), border-top-width 0.2s;
+}
+
+/* buttons */
+.wysiwyg .toolbar,
+.wysiwyg-popup .toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start; 
+  }
+
+.wysiwyg .toolbar *,
+.wysiwyg-popup .toolbar * {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    min-width: 1px; 
+}
+
+.wysiwyg-popup .toolbar button.btn {
+    display: block;
+    width: 2.2rem;
+    height: 1.2rem;
+    margin: 0;
+    border: none;
+    padding: 0.3rem 0;
+    color: #999;
+    background: transparent none;
+    text-decoration: none;
+    vertical-align: top;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    transition: color 0.2s, background 0.2s;
+    box-sizing: content-box; 
+}
+
+.wysiwyg .toolbar button.btn:hover,
+.wysiwyg-popup .toolbar button.btn:hover {
+    background-color: #ffd107; 
+}
